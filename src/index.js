@@ -9,9 +9,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import reducers from 'reducers';
-import Layout from 'components/layout';
-import Goods from 'components/goods';
+import reducers from './reducers/index';
+import Layout from './components/layout/layout';
+import Goods from './components/goods/goods';
 
 
 const store = createStore(reducers, composeWithDevTools(
