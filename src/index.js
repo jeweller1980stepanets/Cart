@@ -12,6 +12,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import reducers from './reducers/index';
 import Layout from './components/layout/layout';
 import Goods from './components/goods/goods';
+import Product from './components/product/product';
 
 
 const store = createStore(reducers, composeWithDevTools(
@@ -26,6 +27,7 @@ ReactDOM.render(
             <Route component={ Layout }>
                 <Route path='/' component={ Goods }/>
             </Route>
+            <Route path='goods/:id' component={ Product }/>
         </Router>
     </Provider>,
     document.getElementById('root')

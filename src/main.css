@@ -537,3 +537,6 @@ footer {
     -ms-transform: translateY(0px);
     transform: translateY(0px);
 }
+.vcenter {
+    vertical-align: middle;
+}
