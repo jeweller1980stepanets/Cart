@@ -14,11 +14,17 @@ import Layout from './components/layout/layout';
 import Goods from './components/goods/goods';
 import Product from './components/product/product';
 import Basket from './components/basket/basket';
+import { loadState, saveState } from './services/localStorage';
 
+const persistedState = loadState() || {};
 
-const store = createStore(reducers, composeWithDevTools(
+const store = createStore(reducers, persistedState, composeWithDevTools(
     applyMiddleware(thunk)
 ));
+
+store.subscribe(()=>{
+    saveState(store.getState());
+});
 
 const history = syncHistoryWithStore(browserHistory, store);
 
