@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchGoods, sortDescend, addProductToBasket } from '../../actions/index';
+import { fetchGoods, addProductToBasket } from '../../actions/index';
 import { getGoods } from '../../services/selectorService';
 import { Link } from 'react-router';
 
@@ -46,22 +46,12 @@ class Goods extends Component {
     }
 
     render () {
-        const { goods, sortDescend } = this.props;
+        const { goods } = this.props;
 
         return (
                <div>
                    <div className='books row'>
                        {goods.map((el, idx) => this.renderProduct(el, idx))}
-                   </div>
-                   <div className='row'>
-                       <div className='col-md-12'>
-                           <button
-                               className='btn btn-primary'
-                               onClick={sortDescend}
-                           >
-                               Sort
-                           </button>
-                       </div>
                    </div>
                </div>
 
@@ -75,7 +65,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchProps = {
     fetchGoods,
-    sortDescend,
     addProductToBasket
 };
 

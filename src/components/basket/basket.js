@@ -7,15 +7,28 @@ import {
 import {
     deleteProductFromBasket,
     basketCheckout,
-    cleanBasket
+    cleanBasket,
+    sortGoods
 } from '../../actions';
 import { Link } from 'react-router';
 import R from 'ramda';
 
-const Basket = ({ goods, totalPrice, deleteProductFromBasket, basketCheckout, cleanBasket }) => {
+const directionSort = {
+    name : false,
+    price : false,
+    count : false
+};
+
+const Basket = ({ goods, totalPrice, deleteProductFromBasket, basketCheckout, cleanBasket, sortGoods }) => {
     const isBasketEmpty = R.isEmpty(goods);
 
-    const renderContent = ( ) => {
+
+    const toggleDirectionSort = (type) => {
+        directionSort[type] = !directionSort[type];
+        return directionSort[type];
+    };
+
+    const renderContent = () => {
         return (
             <div>
                 { isBasketEmpty && <div>Your shopping cart is empty</div> }
@@ -25,9 +38,9 @@ const Basket = ({ goods, totalPrice, deleteProductFromBasket, basketCheckout, cl
                         <thead>
                             <tr className='item-checout'>
                                 <th>Image</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Count</th>
+                                <th onClick={ ()=>{ sortGoods('name', goods, toggleDirectionSort('name'))} }>Name</th>
+                                <th onClick={ ()=>sortGoods('price', goods, toggleDirectionSort('price')) }>Price</th>
+                                <th onClick={ ()=>sortGoods('count', goods, toggleDirectionSort('count')) }>Count</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,7 +140,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     deleteProductFromBasket,
     basketCheckout,
-    cleanBasket
+    cleanBasket,
+    sortGoods
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Basket)

@@ -2,21 +2,18 @@ import {
     FETCH_GOODS_START,
     FETCH_GOODS_SUCCES,
     FETCH_GOODS_FAILURE,
-    SORT_DESCEND_START,
-    SORT_DESCEND_SUCCESS,
-    SORT_DESCEND_FAILURE,
     FETCH_PRODUCT_BY_ID_START,
     FETCH_PRODUCT_BY_ID_SUCCESS,
     FETCH_PRODUCT_BY_ID_FAILURE,
     ADD_PRODUCT_TO_BASCKET,
     DELETE_PRODUCT_FROM_BASKET,
-    CLEAN_BASKET
+    CLEAN_BASKET,
+    SORT_GOODS
 } from '../constants/actionsTypes';
 import {
     fetchGoods as fetchGoodsService,
     fetchGoodsById as fetchGoodsByIdService
 } from '../services/httpService';
-import R from 'ramda';
 
 export const fetchGoods  = () => async dispatch => {
     dispatch({ type: FETCH_GOODS_START });
@@ -35,26 +32,6 @@ export const fetchGoods  = () => async dispatch => {
         })
     }
 
-};
-
-export const sortDescend = () => async dispatch => {
-    dispatch({type: SORT_DESCEND_START});
-
-    try {
-        const goods = await fetchGoodsService();
-        const sortedGoods = R.sort(R.descend(R.prop('price')),goods);
-        dispatch({
-            type: SORT_DESCEND_SUCCESS,
-            payload: sortedGoods
-        })
-
-    } catch (error) {
-        dispatch({
-            type: SORT_DESCEND_FAILURE,
-            payload: error,
-            error: true
-        })
-    }
 };
 
 export const fetchProductById = id => async dispatch => {
@@ -98,4 +75,11 @@ export const cleanBasket = () => dispatch => {
 
 export const basketCheckout = goods => () => {
     alert(JSON.stringify(goods))
+};
+
+export const sortGoods = (type, goods, direction) => dispatch => {
+    dispatch({
+        type: SORT_GOODS,
+        payload: {type: type, goods: goods, direction: direction}
+    })
 };
