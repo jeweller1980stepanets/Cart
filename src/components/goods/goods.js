@@ -47,7 +47,7 @@ class Goods extends Component {
 
     render () {
         const { goods, sortDescend } = this.props;
-        console.log('goods', goods);
+
         return (
                <div>
                    <div className='books row'>

@@ -8,7 +8,9 @@ import {
     FETCH_PRODUCT_BY_ID_START,
     FETCH_PRODUCT_BY_ID_SUCCESS,
     FETCH_PRODUCT_BY_ID_FAILURE,
-    ADD_PRODUCT_TO_BASCKET
+    ADD_PRODUCT_TO_BASCKET,
+    DELETE_PRODUCT_FROM_BASKET,
+    CLEAN_BASKET
 } from '../constants/actionsTypes';
 import {
     fetchGoods as fetchGoodsService,
@@ -79,4 +81,21 @@ export const addProductToBasket = id => dispatch => {
         type: ADD_PRODUCT_TO_BASCKET,
         payload: id
     })
+};
+
+export const deleteProductFromBasket = id => dispatch => {
+    dispatch({
+        type: DELETE_PRODUCT_FROM_BASKET,
+        payload: id
+    })
+};
+
+export const cleanBasket = () => dispatch => {
+    dispatch({
+        type: CLEAN_BASKET
+    })
+};
+
+export const basketCheckout = goods => () => {
+    alert(JSON.stringify(goods))
 };

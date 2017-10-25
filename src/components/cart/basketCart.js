@@ -25,4 +25,5 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, null)(BasketCart)
+export default connect(mapStateToProps, null)(BasketCart);
+

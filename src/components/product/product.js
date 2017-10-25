@@ -60,7 +60,6 @@ class Product extends Component {
     }
 
     render () {
-        console.log('product', this.props.product);
         const { product } = this.props;
         return (
             <div className='view-container'>
