@@ -25,10 +25,10 @@ export const getBasketProductWithCount = state => {
     const productCount = id => R.compose(
         R.length,
         R.filter(basketId => R.equals(id, basketId))
-    )(state.basket)
-    const productWithCount = product => R.assoc('count', productCount(product.id), product)
+    )(state.basket);
+    const productWithCount = product => R.assoc('count', productCount(product.id), product);
 
-    const uniqueIds = R.uniq(state.basket)
+    const uniqueIds = R.uniq(state.basket);
     const goods = R.compose(
         R.map(productWithCount),
         R.map(id => getGoodById(state, id))

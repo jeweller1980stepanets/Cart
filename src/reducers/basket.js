@@ -1,5 +1,5 @@
 import {
-    ADD_PRODUCT_TO_BASCKET,
+    ADD_PRODUCT_TO_BASKET,
     DELETE_PRODUCT_FROM_BASKET,
     CLEAN_BASKET,
     SORT_GOODS
@@ -10,7 +10,7 @@ const initialState = [];
 
 export default (state = initialState, {type, payload}) => {
     switch (type) {
-        case ADD_PRODUCT_TO_BASCKET:
+        case ADD_PRODUCT_TO_BASKET:
             return R.append(payload, state);
         case DELETE_PRODUCT_FROM_BASKET:
             return R.without([payload], state);

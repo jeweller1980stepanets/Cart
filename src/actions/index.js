@@ -5,7 +5,7 @@ import {
     FETCH_PRODUCT_BY_ID_START,
     FETCH_PRODUCT_BY_ID_SUCCESS,
     FETCH_PRODUCT_BY_ID_FAILURE,
-    ADD_PRODUCT_TO_BASCKET,
+    ADD_PRODUCT_TO_BASKET,
     DELETE_PRODUCT_FROM_BASKET,
     CLEAN_BASKET,
     SORT_GOODS
@@ -55,7 +55,7 @@ export const fetchProductById = id => async dispatch => {
 
 export const addProductToBasket = id => dispatch => {
     dispatch({
-        type: ADD_PRODUCT_TO_BASCKET,
+        type: ADD_PRODUCT_TO_BASKET,
         payload: id
     })
 };
